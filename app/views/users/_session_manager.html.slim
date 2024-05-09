@@ -1,0 +1,15 @@
+ul.navbar-nav 
+  li.nav-item.dropdown
+    -if current_user
+      a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+        = current_user.name 
+      .dropdown-menu.dropdown-menu-lg-end[aria-labelledby="navbarDropdown"]
+          =link_to "New Post", new_post_path, class: "dropdown-item"
+            
+          =link_to "Edit account", edit_user_registration_path, class: "dropdown-item"
+          =button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"
+    -else
+      li.nav-item
+        =link_to "Login", new_user_session_path, class: "nav-link"
+      li.nav-item
+        =link_to "Sign up", new_user_registration_path, class: "nav-link"
