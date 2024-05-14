@@ -1,0 +1,13 @@
+.container
+  .card
+    .card-body
+      h5.card-title
+        | Posted 
+        = time_ago_in_words(comment.created_at)
+        |  by 
+        =comment.user.name 
+      p.card-text
+        = comment.body
+      -if current_user == comment.user
+        .card-link
+          =button_to "Delete", [post, comment], class: "btn btn-outline-danger", method: :delete
